@@ -4,6 +4,7 @@ import LoginPage from "./pages/Login";
 import {createBrowserRouter, RouterProvider,} from 'react-router-dom'
 import SignupPage from "./pages/Signup";
 import HomePage from "./pages/Home";
+import InfoForm from "./pages/user-dashboard/InfoForm";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/userform',
     element: <h2>User form</h2>
+  },
+  {
+    path: '/user-dashboard/info-form',
+    element: <InfoForm />
   }
 ])
 
