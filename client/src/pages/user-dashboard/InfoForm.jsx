@@ -5,7 +5,7 @@ import {
   HStack,
   Input,
   Text,
-  Box,
+  Button
 } from "@chakra-ui/react";
 
 const InfoForm = () => {
@@ -26,7 +26,7 @@ const InfoForm = () => {
         </div>
 
         {/* form data fields */}
-        <div>
+        <div className="border border-gray-300 p-4 rounded-3xl">
           <VStack alignContent={'center'}>
             {/* <div className='flex'> */}
             <HStack spacing={2}>
@@ -53,6 +53,8 @@ const InfoForm = () => {
               <Text>Occupation:</Text>
               <Input contentEditable="false" value={"your occupation"} />
             </HStack>
+
+            <Button marginTop={5} backgroundColor={'green'} color={'white'}>Edit</Button>
           </VStack>
         </div>
       </Container>
