@@ -10,7 +10,7 @@ import {
   Text
 } from "@chakra-ui/react";
 
-const LoginPage = () => {
+const SignupPage = () => {
   // properties of react-hook-form for form handling
   // initialized the useForm library
   const {
@@ -28,10 +28,22 @@ const LoginPage = () => {
     <div className="flex justify-center items-center">
       <Container>
         <div className="flex justify-center my-4 py-4">
-          <Text fontSize={"2xl"}>Login to your account</Text>
+          <Text fontSize={"2xl"}>Signup your account</Text>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-100 p-4 rounded-2xl">
+        {/* email field */}
+        <FormControl className="mt-2">
+            <FormLabel>Email</FormLabel>
+            <Input {...register("userEmail", { required: true })} />
+            {errors.userEmail && (
+              <Alert className="mt-1" status="error" variant="left-accent">
+                <AlertIcon />
+                Email is required...
+              </Alert>
+            )}
+          </FormControl>
+
           {/* username field */}
           <FormControl className="mt-2">
             <FormLabel>Username</FormLabel>
@@ -57,7 +69,7 @@ const LoginPage = () => {
           </FormControl>
 
           <FormControl className="flex justify-center mt-4">
-            <Button backgroundColor={"green"} color={"white"} type="submit">Log-in</Button>
+            <Button backgroundColor={"green"} color={"white"} type="submit">Sign-up</Button>
           </FormControl>
         </form>
       </Container>
@@ -65,4 +77,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;
