@@ -5,6 +5,7 @@ import {createBrowserRouter, RouterProvider,} from 'react-router-dom'
 import SignupPage from "./pages/Signup";
 import HomePage from "./pages/Home";
 import InfoForm from "./pages/user-dashboard/InfoForm";
+import EditForm from "./pages/user-dashboard/EditForm";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/user-dashboard/info-form',
     element: <InfoForm />
+  },
+  {
+    path: 'user-dashboard/edit-form',
+    element: <EditForm />
   }
 ])
 
