@@ -11,6 +11,8 @@ import {
   Radio, RadioGroup
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+// edit icon
+import { FaEdit } from "react-icons/fa";
 
 const InfoForm = () => {
   return (
@@ -137,7 +139,7 @@ const InfoForm = () => {
 
           <Link to="/user-dashboard/edit-form">
             <Button marginTop={5} backgroundColor={"green"} color={"white"}>
-              Edit
+              <FaEdit className="mr-2" />Edit
             </Button>
           </Link>
         </VStack>

@@ -6,6 +6,7 @@ import SignupPage from "./pages/Signup";
 import HomePage from "./pages/Home";
 import InfoForm from "./pages/user-dashboard/InfoForm";
 import EditForm from "./pages/user-dashboard/EditForm";
+import Navbar from "./components/Navbar";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,8 @@ const App = () => {
       {/* signup page */}
 
       {/* form page */}
+
+      <Navbar />
 
       <RouterProvider router={router} />
     </div>

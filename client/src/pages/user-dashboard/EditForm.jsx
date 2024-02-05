@@ -12,6 +12,8 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+// save icon
+import { FaSave } from "react-icons/fa";
 
 const EditForm = () => {
   // initialize the react-hook-form useForm
@@ -83,7 +85,7 @@ const EditForm = () => {
             </FormControl>
 
             {/* <FormControl className="flex justify-center"> */}
-                <Button backgroundColor={"yellow"} type="submit">Save changes</Button>
+                <Button backgroundColor={"yellow"} type="submit"><FaSave className="mr-2" />Save changes</Button>
             {/* </FormControl> */}
           </VStack>
         </form>
