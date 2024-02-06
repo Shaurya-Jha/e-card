@@ -45,7 +45,7 @@ const SignupPage = () => {
           </FormControl>
 
           {/* username field */}
-          <FormControl className="mt-2">
+          {/* <FormControl className="mt-2">
             <FormLabel>Username</FormLabel>
             <Input {...register("userName", { required: true })} />
             {errors.userName && (
@@ -54,7 +54,7 @@ const SignupPage = () => {
                 Username is required...
               </Alert>
             )}
-          </FormControl>
+          </FormControl> */}
 
           {/* password field */}
           <FormControl className="mt-2">

@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json())
 
 // employee route
-app.use("/user", employeeRoutes)
+app.use("/employee", employeeRoutes)
 
 app.listen(PORT, async () => {
   console.log(`server started running on port: ${PORT}`);

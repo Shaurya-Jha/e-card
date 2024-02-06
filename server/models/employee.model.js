@@ -2,19 +2,28 @@ const mongoose = require("mongoose")
 
 const employeeSchema = new mongoose.Schema({
     firstName:{
-        type: String
+        type: String,
+        default: ""
     },
     lastName: {
-        type: String
+        type: String,
+        default: ""
     },
     email: {
-        type: String
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        default: ""
     },
     address: {
-        type: String
+        type: String,
+        default: ""
     },
     dateOfBirth: {
-        type: Date
+        type: Date,
+        default:""
     }
 }, {timestamps: true})
 

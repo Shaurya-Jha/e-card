@@ -1,16 +1,49 @@
 // controller for employee
 const Employee = require("../models/employee.model.js")
 
-// create a new object
-exports.createEmployee = async (req, res) => {
-    try{
-        const newEmployee = new Employee(req.body)
+// get all employess from the database
+exports.getAllEmployees = async (req, res) => {
+    try {
+        // find all the employees from the database
+        const employees = await Employee.find({})
 
-        await newEmployee.save();
+        res.status(200).json(employees)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// controller to signup an employee
+exports.signupEmployee = async (req, res) => {
+    try {
+        // all signup related process will be handled here
+
+        // destructuring to get the required fields
+        const {email, password} = req.body
+        const newEmployee = new Employee({email: email, password: password})
+
+        await newEmployee.save()
         res.status(201).json(newEmployee)
-    }catch(error) {
-        res.status(500).json({
-            message: "Server error"
-        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// controller to get employee by id and login
+exports.loginEmployee = async (req, res) => {
+    try {
+        // login and employee exists will be checked here
+        const {id} = req.params.id
+
+        const employeeExists = await Employee.find({_id:id})
+
+        if(!employeeExists){
+            return res.status(400).json({
+                message: "Employee doesn't exists"
+            })
+        }
+        res.status(200).json("employee exists")
+    } catch (error) {
+        console.log(error);
     }
 }

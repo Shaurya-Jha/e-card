@@ -7,6 +7,7 @@ import HomePage from "./pages/Home";
 import InfoForm from "./pages/user-dashboard/InfoForm";
 import EditForm from "./pages/user-dashboard/EditForm";
 import Navbar from "./components/Navbar";
+import UserForm from "./pages/UserForm";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: 'user-dashboard/edit-form',
     element: <EditForm />
+  },
+  {
+    path: 'user',
+    element: <UserForm />
   }
 ])
 
