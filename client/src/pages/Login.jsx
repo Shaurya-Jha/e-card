@@ -10,6 +10,7 @@ import {
   Text
 } from "@chakra-ui/react";
 import axios from 'axios'
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginPage = () => {
   // properties of react-hook-form for form handling
@@ -21,23 +22,26 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const userEmail = getValues("userEmail")
-  const userPassword = getValues("userPassword")
+  const loginData = {
+    userEmail: getValues("userEmail"),
+    userPassword: getValues("userPassword")
+  }
+  // const userEmail = getValues("userEmail")
+  // const userPassword = getValues("userPassword")
 
   // form onsubmit handler
   const onSubmit = (data) => {
     console.log(data);
 
-    axios.get("http://localhost:5000/employee/login", {userEmail, userPassword})
+    axios.get("http://localhost:5000/employee/emplogin", loginData)
     .then((res) => {
       console.log(res.data);
 
-      // if(res.data.email === userEmail && res.data.password === userPassword){
-      //   console.log('user can login');
-      // }
-      // else{
-      //   console.log('user doesn`t exist');
-      // }
+      if(res.data == loginData){
+        toast.success("Login successfull")
+      }else{
+        toast.error("Login credentials incorrect")
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -81,6 +85,7 @@ const LoginPage = () => {
           </FormControl>
         </form>
       </Container>
+      <Toaster />
     </div>
   );
 };

@@ -14,6 +14,6 @@ router.get("/getEmployees", getAllEmployees);
 router.post("/signup", signupEmployee)
 
 // route to check if employee exists
-router.get("/login", loginEmployee)
+router.post("/login", loginEmployee)
 
 module.exports = router;
