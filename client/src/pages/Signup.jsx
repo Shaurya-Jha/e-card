@@ -13,6 +13,8 @@ import {
 import axios from "axios";
 // react toast for toast passing
 import toast, { Toaster } from "react-hot-toast";
+// react router dom
+import {Link} from 'react-router-dom'
 
 const SignupPage = () => {
   // properties of react-hook-form for form handling
@@ -44,6 +46,7 @@ const SignupPage = () => {
       .then((response) => {
         // console.log(response.data);
         toast.success("Employee created successfully!");
+        <Link to="/login" />
       })
       .catch((error) => {
         // console.log(error);

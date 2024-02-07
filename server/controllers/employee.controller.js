@@ -22,7 +22,7 @@ exports.signupEmployee = async (req, res) => {
     const { userEmail, userPassword } = req.body;
 
     // check if the user exists or not
-    const empExists = Employee.find({ email: userEmail });
+    const empExists = await Employee.findOne({ email: userEmail });
 
     if (empExists) {
       res.status(400).json({
@@ -33,7 +33,6 @@ exports.signupEmployee = async (req, res) => {
         email: userEmail,
         password: userPassword,
       });
-
       await newEmployee.save();
       res.status(201).json(newEmployee);
     }
