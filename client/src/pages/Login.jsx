@@ -28,7 +28,7 @@ const LoginPage = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    axios.get("http://localhost:5000/employee/login")
+    axios.get("http://localhost:5000/employee/login", {userEmail, userPassword})
     .then((res) => {
       console.log(res.data);
 
