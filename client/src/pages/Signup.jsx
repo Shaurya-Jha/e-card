@@ -14,9 +14,14 @@ import axios from "axios";
 // react toast for toast passing
 import toast, { Toaster } from "react-hot-toast";
 // react router dom
-import {redirect} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+import { useState } from "react";
 
 const SignupPage = () => {
+  const [signup, setSignup] = useState(false)
+
+  const navigate = useNavigate()
+
   // properties of react-hook-form for form handling
   // initialized the useForm library
   const {
@@ -48,12 +53,8 @@ const SignupPage = () => {
       .then((response) => {
         console.log(response.data);
         toast.success("Employee created successfully!");
-
-        if(response.status === 200){
-          return redirect("/emplogin")
-        }
-        // <Link to="/login" />
         
+        setSignup(!signup)
       })
       .catch((error) => {
         console.log(error);
@@ -62,6 +63,10 @@ const SignupPage = () => {
 
     reset();
   };
+
+  if(signup == true){
+    navigate("/login")
+  }
 
   return (
     <div className="flex justify-center items-center">

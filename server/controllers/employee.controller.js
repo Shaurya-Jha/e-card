@@ -60,21 +60,23 @@ exports.signupEmployee = async (req, res) => {
   }
 };
 
-// controller to get employee by id and login
+// controller for login
 exports.loginEmployee = async (req, res) => {
-  try {
-    // login and employee exists will be checked here
-    const { id } = req.params.id;
+    // get the email and password from the body
+    const {userEmail , userPassword} = req.body
 
-    const employeeExists = await Employee.find({ _id: id });
+    // check if the user exists
+    const empExists = await Employee.findOne({
+        email: userEmail,
+    })
 
-    if (!employeeExists) {
-      return res.status(400).json({
-        message: "Employee doesn't exists",
-      });
+    if(empExists){
+        res.status(200).json({
+            message: "user can login"
+        })
+    } else {
+        res.status(400).json({
+            message:"user does not exist"
+        })
     }
-    res.status(200).json("employee exists ");
-  } catch (error) {
-    console.log(error);
-  }
-};
+}

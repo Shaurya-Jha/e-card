@@ -9,6 +9,7 @@ import {
   Container,
   Text
 } from "@chakra-ui/react";
+import axios from 'axios'
 
 const LoginPage = () => {
   // properties of react-hook-form for form handling
@@ -16,12 +17,31 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
+
+  const userEmail = getValues("userEmail")
+  const userPassword = getValues("userPassword")
 
   // form onsubmit handler
   const onSubmit = (data) => {
     console.log(data);
+
+    axios.get("http://localhost:5000/employee/login")
+    .then((res) => {
+      console.log(res.data);
+
+      // if(res.data.email === userEmail && res.data.password === userPassword){
+      //   console.log('user can login');
+      // }
+      // else{
+      //   console.log('user doesn`t exist');
+      // }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   };
 
   return (
@@ -34,12 +54,12 @@ const LoginPage = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-100 p-4 rounded-2xl">
           {/* username field */}
           <FormControl className="mt-2">
-            <FormLabel>Username</FormLabel>
-            <Input {...register("userName", { required: true })} />
+            <FormLabel>Email</FormLabel>
+            <Input {...register("userEmail", { required: true })} />
             {errors.userName && (
               <Alert className="mt-1" status="error" variant="left-accent">
                 <AlertIcon />
-                Username is required...
+                Email is required...
               </Alert>
             )}
           </FormControl>
