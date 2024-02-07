@@ -7,8 +7,12 @@ import {
   AlertIcon,
   Button,
   Container,
-  Text
+  Text,
 } from "@chakra-ui/react";
+// axios for api fetching
+import axios from "axios";
+// react toast for toast passing
+import toast, { Toaster } from "react-hot-toast";
 
 const SignupPage = () => {
   // properties of react-hook-form for form handling
@@ -17,11 +21,36 @@ const SignupPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
+    reset,
   } = useForm();
 
   // form onsubmit handler
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+
+    // const signupData = useForm().getValues();
+    // console.log('signup data : ', signupData);
+
+    const signupData = {
+      userEmail: getValues("userEmail"),
+      userPassword: getValues("userPassword"),
+    };
+
+    console.log(signupData);
+
+    axios
+      .post("http://localhost:5000/employee/signup", signupData)
+      .then((response) => {
+        // console.log(response.data);
+        toast.success("Employee created successfully!");
+      })
+      .catch((error) => {
+        // console.log(error);
+        toast.error("Employee already exists");
+      });
+
+    reset();
   };
 
   return (
@@ -31,9 +60,12 @@ const SignupPage = () => {
           <Text fontSize={"2xl"}>Signup your account</Text>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-gray-100 p-4 rounded-2xl">
-        {/* email field */}
-        <FormControl className="mt-2">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-gray-100 p-4 rounded-2xl"
+        >
+          {/* email field */}
+          <FormControl className="mt-2">
             <FormLabel>Email</FormLabel>
             <Input {...register("userEmail", { required: true })} />
             {errors.userEmail && (
@@ -69,10 +101,13 @@ const SignupPage = () => {
           </FormControl>
 
           <FormControl className="flex justify-center mt-4">
-            <Button backgroundColor={"green"} color={"white"} type="submit">Sign-up</Button>
+            <Button backgroundColor={"green"} color={"white"} type="submit">
+              Sign-up
+            </Button>
           </FormControl>
         </form>
       </Container>
+      <Toaster />
     </div>
   );
 };
