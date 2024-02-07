@@ -24,18 +24,37 @@ exports.signupEmployee = async (req, res) => {
     // check if the user exists or not
     const empExists = await Employee.findOne({ email: userEmail });
 
+    // if empExists
     if (empExists) {
-      res.status(400).json({
-        message: "employee exists",
+      return res.status(400).json({
+        message: "Employee already exists",
       });
     } else {
+      // insert the new employee
       const newEmployee = new Employee({
         email: userEmail,
         password: userPassword,
       });
+
       await newEmployee.save();
-      res.status(201).json(newEmployee);
+      res.status(201).json({
+        message: "Employee registered successfully",
+        newEmployee,
+      });
     }
+
+    // if (empExists) {
+    //   res.status(500).json({
+    //     message: "employee exists",
+    //   });
+    // } else {
+    //   const newEmployee = new Employee({
+    //     email: userEmail,
+    //     password: userPassword,
+    //   });
+    //   await newEmployee.save();
+    //   res.status(200).json(newEmployee);
+    // }
   } catch (error) {
     console.log(error);
   }

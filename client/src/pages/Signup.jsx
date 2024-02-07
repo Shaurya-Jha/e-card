@@ -14,7 +14,7 @@ import axios from "axios";
 // react toast for toast passing
 import toast, { Toaster } from "react-hot-toast";
 // react router dom
-import {Link} from 'react-router-dom'
+import {redirect} from 'react-router-dom'
 
 const SignupPage = () => {
   // properties of react-hook-form for form handling
@@ -26,6 +26,8 @@ const SignupPage = () => {
     getValues,
     reset,
   } = useForm();
+
+  // const navigate = useHistory()
 
   // form onsubmit handler
   const onSubmit = (data) => {
@@ -44,12 +46,17 @@ const SignupPage = () => {
     axios
       .post("http://localhost:5000/employee/signup", signupData)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         toast.success("Employee created successfully!");
-        <Link to="/login" />
+
+        if(response.status === 200){
+          return redirect("/emplogin")
+        }
+        // <Link to="/login" />
+        
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
         toast.error("Employee already exists");
       });
 
