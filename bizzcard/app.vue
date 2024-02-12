@@ -1,20 +1,15 @@
 <script>
+import index from './pages/index.vue';
 
-import Color from './components/Color.vue';
-
+export default {
+  components: {
+    index
+  }
+}
 </script>
-
-<!-- html -->
 <template>
   <div>
-    <!-- <NuxtWelcome /> -->
-    <h2>Hello world</h2>
-
-    <Color />
+    <!-- <h1>hello world</h1> -->
+    <index />
   </div>
 </template>
-
-<!-- css -->
-<style>
-/* @import url("primevue/resources/themes/aura-light-green/theme.css"); */
-</style>
