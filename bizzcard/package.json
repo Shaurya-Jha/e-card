@@ -10,9 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@caohenghu/vue-colorpicker": "^1.2.4",
     "cropperjs": "^1.6.1",
     "nuxt": "^3.10.1",
     "vue": "^3.4.15",
+    "vue-clickaway2": "^2.3.2",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
